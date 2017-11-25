@@ -1,86 +1,80 @@
-import React from 'react'
-import Head from 'next/head'
-import Airtable from 'airtable'
-import {Bar, Line, Pie} from 'react-chartjs-2'
+import React from 'react';
+import Head from 'next/head';
+import Airtable from 'airtable';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 
-import Header from '../components/Header'
+import Header from '../components/Header';
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       title: 'Welcome to the Doug Score',
       cars: []
-    }
+    };
 
-    const base = new Airtable({apiKey: 'keyxefljsTbnpZLbl'}).base('appNnFMrTfpaXXwLA');
-    base('Doug Score Results').select({ maxRecords: 99, view: "Grid view" })
-      .eachPage(function page(records, fetchNextPage) {
-        // This function (`page`) will get called for each page of records.
-        // console.log(records);
-        const json = JSON.stringify(records);
-        this.setState({ cars: records });
-        // const json = records.json();
-        // console.log(`JSON 🙌`);
-        // console.log(records);
-        // console.log(json);
-        // console.log(`JSON 🙌`);
+    const base = new Airtable({ apiKey: 'keyxefljsTbnpZLbl' }).base('appNnFMrTfpaXXwLA');
+    base('Doug Score Results')
+      .select({ maxRecords: 99, view: 'Grid view' })
+      .eachPage(
+        function page(records, fetchNextPage) {
+          // This function (`page`) will get called for each page of records.
+          // console.log(records);
+          const json = JSON.stringify(records);
+          this.setState({ cars: records });
+          // const json = records.json();
+          // console.log(`JSON 🙌`);
+          // console.log(records);
+          // console.log(json);
+          // console.log(`JSON 🙌`);
 
-        // const {cars} = json;
-        // console.log(`CARS 🙌`);
+          // const {cars} = json;
+          // console.log(`CARS 🙌`);
 
-        // console.log(cars);
-        // console.log(`CARS 🙌`);
+          // console.log(cars);
+          // console.log(`CARS 🙌`);
 
-        // console.log(`Settings States 🙏`);
-        // this.setState({ test: 'Test200' });
-        // console.log(this.state.test);
-        // console.log(this.state.test);
-        // this.setState({ json });
-        // console.log(`Done Settings States 🙏`);
+          // console.log(`Settings States 🙏`);
+          // this.setState({ test: 'Test200' });
+          // console.log(this.state.test);
+          // console.log(this.state.test);
+          // this.setState({ json });
+          // console.log(`Done Settings States 🙏`);
 
-        // this.setState({ cars });
-        // this.setState({cars: records.fields.Make});
-        // console.log(records.fields.Make);
+          // this.setState({ cars });
+          // this.setState({cars: records.fields.Make});
+          // console.log(records.fields.Make);
 
-        // records.forEach(function(record) {
-        //     console.log('Retrieved', record.get('Model'));
-        //     // I guess either one works
-        //     // this.setState({cars: record.fields.Make});
-        //     this.setState({ carsForEach: record.fields });
-        //     console.log(`🚘 Car: ${record.fields} ${record.get('Model')}`);
-        // });
-        // To fetch the next page of records, call `fetchNextPage`.
-        // If there are more records, `page` will get called again.
-        // If there are no more records, `done` will get called.
-        // fetchNextPage();
-
-      }.bind(this));
-
+          // records.forEach(function(record) {
+          //     console.log('Retrieved', record.get('Model'));
+          //     // I guess either one works
+          //     // this.setState({cars: record.fields.Make});
+          //     this.setState({ carsForEach: record.fields });
+          //     console.log(`🚘 Car: ${record.fields} ${record.get('Model')}`);
+          // });
+          // To fetch the next page of records, call `fetchNextPage`.
+          // If there are more records, `page` will get called again.
+          // If there are no more records, `done` will get called.
+          // fetchNextPage();
+        }.bind(this)
+      );
   }
 
-  getPosts = () =>  {
+  getPosts = () => {};
 
-  }
-
-  componentDidMount(){
-
+  componentDidMount() {
     // console.log(this.state);
     this.getPosts();
-
-
   }
 
   static defaultProps = {
     displayTitle: true,
     displayLegend: false,
     legendPosition: 'right'
-  }
+  };
 
-  render () {
-
+  render() {
     // setTimeout(() => {
     //   this.setState({title: 'Check all Doug Scores'});
     // }, 2000);
@@ -95,13 +89,23 @@ class App extends React.Component {
 
     return (
       <div>
-        <Head><title>Doug Score</title></Head>
+        <Head>
+          <title>Doug Score</title>
+        </Head>
         <header>
           <div className="header-wrapper">
             <Header title={this.state.title} />
-            <h3>So how does the DougScore work? There are 10 separate categories, and they’re each judged on a scale of 1 through 10 — with “1” being the worst, and “10” being the best, meaning the highest possible DougScore is 100. The ten categories are split into two separate groups: “Weekend” and “Daily.” The “Weekend” categories measure a car’s appeal to enthusiasts; in other words, how much fun it would be to drive on the weekend. The “Daily” categories meanwhile, focus on a car’s livability and practicality.</h3>
-            <a href="https://www.youtube.com/c/dougdemuro" target="_blank" className="button">Doug's Youtube Channel</a>
-            <a href="http://www.dougdemuro.com/uncategorized/welcome-to-the-dougscore/" target="_blank" className="button">Doug's Website</a>
+            <h3>
+              So how does the DougScore work? There are 10 separate categories, and they’re each judged on a scale of 1 through 10 — with “1” being the worst, and “10” being the best, meaning the
+              highest possible DougScore is 100. The ten categories are split into two separate groups: “Weekend” and “Daily.” The “Weekend” categories measure a car’s appeal to enthusiasts; in other
+              words, how much fun it would be to drive on the weekend. The “Daily” categories meanwhile, focus on a car’s livability and practicality.
+            </h3>
+            <a href="https://www.youtube.com/c/dougdemuro" target="_blank" className="button">
+              Doug's Youtube Channel
+            </a>
+            <a href="http://www.dougdemuro.com/uncategorized/welcome-to-the-dougscore/" target="_blank" className="button">
+              Doug's Website
+            </a>
           </div>
         </header>
         {/* <h1 title={title}></h1> */}
@@ -112,7 +116,7 @@ class App extends React.Component {
         })} */}
         {/* { this.state.cars._rawJson.id } */}
 
-        <div className='flex-grid'>
+        <div className="flex-grid">
           {this.state.cars.map((car, key) => {
             const chartData = {
               labels: ['Styling', 'Acceleration', 'Handling', 'Cool Factor', 'Importance', 'Features', 'Comfort', 'Quality', 'Practicality', 'Value'],
@@ -131,31 +135,31 @@ class App extends React.Component {
                     car._rawJson.fields.practicality,
                     car._rawJson.fields.value
                   ],
-                  backgroundColor: [
-                    'rgba(0, 0, 0, 0.6)'
-                  ]
+                  backgroundColor: ['rgba(0, 0, 0, 0.6)']
                 }
               ]
-            }
+            };
 
             const data = [
-              {name: 'Styling', value: car._rawJson.fields.styling},
-              {name: 'Acceleration', value: car._rawJson.fields.acceleration},
-              {name: 'Handling', value: car._rawJson.fields.handling},
-              {name: 'Cool Factor', value: car._rawJson.fields.coolFactor},
-              {name: 'Importance', value: car._rawJson.fields.importance},
-              {name: 'Features', value: car._rawJson.fields.features},
-              {name: 'Comfort', value: car._rawJson.fields.comfort},
-              {name: 'Quality', value: car._rawJson.fields.quality},
-              {name: 'Practicality', value: car._rawJson.fields.practicality},
-              {name: 'Value', value: car._rawJson.fields.value}
-            ]
+              { name: 'Styling', value: car._rawJson.fields.styling },
+              { name: 'Acceleration', value: car._rawJson.fields.acceleration },
+              { name: 'Handling', value: car._rawJson.fields.handling },
+              { name: 'Cool Factor', value: car._rawJson.fields.coolFactor },
+              { name: 'Importance', value: car._rawJson.fields.importance },
+              { name: 'Features', value: car._rawJson.fields.features },
+              { name: 'Comfort', value: car._rawJson.fields.comfort },
+              { name: 'Quality', value: car._rawJson.fields.quality },
+              { name: 'Practicality', value: car._rawJson.fields.practicality },
+              { name: 'Value', value: car._rawJson.fields.value }
+            ];
             // console.log(data);
             return (
               <div className="col">
                 <div className="total">{car._rawJson.fields.totalDougScore}</div>
                 <div className="text">
-                  <h2>{car._rawJson.fields.year} {car._rawJson.fields.make} {car._rawJson.fields.model}</h2>
+                  <h2>
+                    {car._rawJson.fields.year} {car._rawJson.fields.make} {car._rawJson.fields.model}
+                  </h2>
                   <h3>🏖 Weekend Category: {car._rawJson.fields.weekendTotal}</h3>
                   <h3>🏢 Daily Category: {car._rawJson.fields.dailyTotal}</h3>
                 </div>
@@ -166,7 +170,7 @@ class App extends React.Component {
                 <Bar
                   data={chartData}
                   width={100}
-	                height={60}
+                  height={60}
                   options={{
                     maintainAspectRatio: true,
                     responsive: true,
@@ -180,29 +184,34 @@ class App extends React.Component {
                       position: this.props.legendPosition
                     },
                     scales: {
-                      xAxes: [{
-                        stacked: true,
-                        ticks: {
-                          stepSize: 1,
-                          min: 0,
-                          autoSkip: false
+                      xAxes: [
+                        {
+                          stacked: true,
+                          ticks: {
+                            stepSize: 1,
+                            min: 0,
+                            autoSkip: false
+                          }
                         }
-                      }],
-                      yAxes: [{
-                        stacked: true,
-                      }]
+                      ],
+                      yAxes: [
+                        {
+                          stacked: true
+                        }
+                      ]
                     }
                   }}
                 />
                 {/* { console.log(car.id) }
                 { console.log(car._rawJson.fields) } */}
               </div>
-            )
-          })
-          }
+            );
+          })}
         </div>
         <footer>
-          <a href="https://stephenfjohnson.com/" target="_blank">Built By Stephen 👨🏼‍💻</a>
+          <a href="https://stephenfjohnson.com/" target="_blank">
+            Built By Stephen 👨🏼‍💻
+          </a>
         </footer>
         <style global jsx>{`
           * {
@@ -337,8 +346,8 @@ class App extends React.Component {
           }
         `}</style>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
